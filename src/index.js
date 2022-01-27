@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom.scss';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Mainnet, DAppProvider } from '@usedapp/core'
+
+const config = {
+  readOnlyChainId: Mainnet.chainId,
+  readOnlyUrls: {
+    [Mainnet.chainId]: 'https://mainnet.infura.io/v3/9758d58be56f435e8e8bd6372deb1d32',
+  },
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DAppProvider config={config}>
+      <App />
+    </DAppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
